@@ -4,6 +4,7 @@
 //  and you should await it to log the message.
 
 
+
 async function  sendReminder () {
     return new Promise ((resolve)=>{
     setTimeout(()=>{
@@ -27,7 +28,7 @@ async function  sendReminder () {
 
 async function checkServer(){
     return new Promise((resolve,reject)=>{
-         Math.random ()>0.2? resolve("Server is running"): reject("Server is running")
+         Math.random ()>0.2? resolve("Server is running"): reject("Server  down ")
 
     });
 };
@@ -42,15 +43,26 @@ setTimeout(() => {
     clearInterval(interval)
 }, 30000);
 
+
+
 //You're building a system to show multiple notifications to a user. 
 // Create an async function showNotifications that takes an array of messages and shows each message
 //  1 second apart using await and setTimeout wrapped in a Promise. 
 // After all messages are shown, log "All notifications sent".
+async function showNotifications (messages){
+   for (message in messages){
+    await new Promise((resolve) => setTimeout(resolve,1000));
+    console.log("Notification:",messages[message])
+   }
+   console.log("All notifications sent")
+};
 
+showNotifications(["Three new voiceamails", "rent is due soon","coffee date with the girls"]);
 
 
 
 //In your startup’s API integration, write an async function fetchDataWithRetry() that tries to fetch data from a mock API (use Promise.reject() for failure), 
 // retries up to 3 times with a 2-second delay between attempts using setTimeout, and resolves with "Data fetched" or logs "Failed after 3 attempts" if all fail.
+
 
 
